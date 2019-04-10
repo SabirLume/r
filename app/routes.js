@@ -7,13 +7,13 @@ module.exports = function(app, passport, db) {
         res.render('index.ejs');
     });
 
-    // PROFILE SECTION =========================
-    app.get('/profile', isLoggedIn, function(req, res) {
-        db.collection('messages').find().toArray((err, result) => {
+    // Owner Page =========================
+    app.get('/owner', isLoggedIn, function(req, res) {
+        db.collection('bank').find().toArray((err, result) => {
           if (err) return console.log(err)
-          res.render('profile.ejs', {
+          res.render('owner.ejs', {
             user : req.user,
-            messages: result
+            bank: result
           })
         })
     });
@@ -25,34 +25,19 @@ module.exports = function(app, passport, db) {
     });
 
 // message board routes ===============================================================
-
-    app.post('/messages', (req, res) => {
-      db.collection('messages').save({name: req.body.name, msg: req.body.msg, thumbUp: 0, thumbDown:0}, (err, result) => {
-        if (err) return console.log(err)
-        console.log('saved to database')
-        res.redirect('/profile')
-      })
-    })
-
-    app.put('/messages', (req, res) => {
-      db.collection('messages')
-      .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-        $set: {
-          thumbUp:req.body.thumbUp + 1
+    app.put('/result', (req, res) => {
+      db.collection('bank')
+      .findOneAndUpdate({}, {
+        //if we're able to make the profit field value an integer, use inc. If not, use set.
+        $inc: {
+          profit: req.body.profit
         }
       }, {
         sort: {_id: -1},
-        upsert: true
+        upsert: false
       }, (err, result) => {
         if (err) return res.send(err)
         res.send(result)
-      })
-    })
-
-    app.delete('/messages', (req, res) => {
-      db.collection('messages').findOneAndDelete({name: req.body.name, msg: req.body.msg}, (err, result) => {
-        if (err) return res.send(500, err)
-        res.send('Message deleted!')
       })
     })
 
@@ -62,31 +47,25 @@ module.exports = function(app, passport, db) {
 
     // locally --------------------------------
         // LOGIN ===============================
-        // show the login form
+        //render the login/signup form
         app.get('/login', function(req, res) {
             res.render('login.ejs', { message: req.flash('loginMessage') });
         });
 
         // process the login form
         app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/profile', // redirect to the secure profile section
+            successRedirect : '/owner', // redirect to the secure profile section
             failureRedirect : '/login', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
 
         // SIGNUP =================================
-        // show the signup form
-        app.get('/signup', function(req, res) {
-            res.render('signup.ejs', { message: req.flash('signupMessage') });
-        });
-
         // process the signup form
         app.post('/signup', passport.authenticate('local-signup', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/signup', // redirect back to the signup page if there is an error
+            successRedirect : '/owner', // redirect to the secure profile section
+            failureRedirect : '/login', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
         }));
-
 // =============================================================================
 // UNLINK ACCOUNTS =============================================================
 // =============================================================================
@@ -110,6 +89,5 @@ module.exports = function(app, passport, db) {
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
-
     res.redirect('/');
 }
