@@ -1,23 +1,58 @@
-<!doctype html>
-<html>
-<head>
-    <title></title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="container">
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Roulette</title>
+    <link rel="stylesheet" href="../public/style.css">
+  </head>
+  <body>
+  <h1>Roulette</h1>
+  <section class="container">
+    <div class="board green"> <p>1</p> </div>
+    <div class="board black"> <p>2</p> </div>
+    <div class="board green"> <p>3</p> </div>
+    <div class="board black"> <p>4</p> </div>
+    <div class="board green"> <p>5</p> </div>
+    <div class="board black"> <p>6</p> </div>
+    <div class="board mid"> <p>0</p> </div>
+    <div class="board green"> <p>7</p> </div>
+    <div class="board black"> <p>8</p> </div>
+    <div class="board green"> <p>9</p> </div>
+    <div class="board black"> <p>10</p> </div>
+    <div class="board green"> <p>11</p> </div>
+    <div class="board black"> <p>12</p> </div>
+  </section>
 
-    <div class="jumbotron text-center">
+  <section class="inputSection">
+    <section class="contain bank">
+      <h2>Bank</h2>
+    </section>
+    <section class="contain inputs">
+      <h2>Bets</h2>
+      <form class="" action="index.html" method="post">
+        <input type="text" name="" value="">
+        <input type="button" name="" value="PLACE BET">
+      </form>
 
-        <p>Login or Signup:</p>
+      <select class="" name="">
+        <option value="">Green</option>
+        <option value="">Black</option>
+        <option value="">Red</option>
+      </select>
+    </section>
+    <section class="contain displayResult">
+      <h2>Result</h2>
 
-        <a href="/login" class="btn btn-default"><span class="fa fa-user"></span>Login</a>
-        <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span>Signup</a>
+    </section>
+  </section>
 
-    </div>
-
-</div>
-</body>
+  </body>
 </html>
+
+
+<!-- // drop down for colors
+// input for user number input
+// button for dropdown
+// button to start game
+// bank
+// display if user won or lost -->
