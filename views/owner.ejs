@@ -8,23 +8,17 @@
 </head>
 <body>
 <div class="container">
-
     <div class="page-header text-center">
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
         <div class="well">
             <h1>Funds</h1>
             <% for(var i = 0; i < bank.length; i++) { %>
-                    <span class=><%= bank[i].profit %></span>
-                </div>
-                <div>
-                    <h2>Wins</h2>
-                    <span><%= bank[i].wins %></span>
-                </div>
-                <div>
-                    <h3>Losses</h3>
-                    <span><%= bank[i].losses %></span>
-                    <% } %>
+                <span><%= bank[i].profit %></span>
+            <div>
+                <h3>Wins:</h3> <span><%= bank[i].wins %></span>
+                <h3>Losses:</h3> <span><%= bank[i].losses %></span>
+            <% } %>
                 </div>
 </div>
 <script src="main.js"></script>
