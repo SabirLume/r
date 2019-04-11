@@ -37,7 +37,7 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
 app.use(session({
-    secret: 'rcbootcamp2019a', // session secret
+    secret: 'rainbowzebraparty', // session secret
     resave: true,
     saveUninitialized: true
 }));
@@ -51,4 +51,4 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // launch ======================================================================
 app.listen(port);
-console.log('The magic happens on port ' + port);
+console.log('The gambling happens on port ' + port);
