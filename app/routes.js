@@ -30,7 +30,9 @@ module.exports = function(app, passport, db) {
       .findOneAndUpdate({}, {
         //if we're able to make the profit field value an integer, use inc. If not, use set.
         $inc: {
-          profit: req.body.profit
+          profit: req.body.profit,
+          wins: req.body.wins,
+          losses: req.body.losses
         }
       }, {
         sort: {_id: -1},
