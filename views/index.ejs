@@ -51,8 +51,8 @@
     <div class="board hiHalf">3rd 12</div>
     <div class="board low bet">1 to 18</div>
     <div class="board even bet">EVEN</div>
-    <div class="board red bet">RED</div>
-    <div class="board black bet">BLACK</div>
+    <div id="red" class="board red bet">RED</div>
+    <div id="black" class="board black bet">BLACK</div>
     <div class="board odd bet">ODD</div>
     <div class="board high bet">19 to 36</div>
   </section>
@@ -60,23 +60,23 @@
   <section class="inputSection">
     <section class="contain bank">
       <h2>Bank</h2>
-      <p>$<span class="userBank">10,000</span></p>
+      <p>$<span id="userBank" class="userBank">10000</span></p>
     </section>
     <section class="contain inputs">
       <h2>Amount bet</h2>
-      <p>$<input type="text" name="betInput" value="" placedholder="Place your bet!">
+      <p>$<input type="text" id="betInput" name="betInput" placeholder="Place your bet amount!">
       <h2>Bet Chosen</h2>
       <section class="chosenBet">
 
         <p class="multiplier"></p>
       </section>
-      
+
       <button id="betClick" type="button" name="button">Place Bet</button>
 
     </section>
     <section class="contain displayResult">
       <h2>Result</h2>
-        <p class="result"></p>
+        <p id="result" class="result"></p>
     </section>
   </section>
 
