@@ -12,15 +12,16 @@ h2 {
   text-align: center;
 }
 
-.container {
+.gameBoard {
   width: 49%;
   margin-left: 30%;
   float: left;
+  color: white;
 }
 
 .board {
   height: 100px;
-  width: 14%;
+  width: 8.3%;
   float: left;
   border: 1px solid black;
 }
@@ -46,7 +47,7 @@ p {
 }
 
 .inputSection {
-width: 100%;
+width: 48%;
 height: 500px;
 display: block;
 float: left;
