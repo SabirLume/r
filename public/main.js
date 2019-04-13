@@ -6,12 +6,9 @@ Array.from(document.querySelectorAll(".board")).forEach(function(element) {
     //changed placedbet variable to be equal to the inside of the section that was clicked
     placedBet= this.innerText
     document.querySelector('chosenBet').innerText = placedBet
-  })
-})
-
-
 
 //Code for random number generator (core part of game) & win comparisan
+    
 //have to figure out how to have all the numbers inside of numGen to be available to other functions for comparing and such
 
 function numGen (){
@@ -59,21 +56,3 @@ function result(){
   if(result===""){
 
   }
-}
-
-// fetch('result', {
-//   method: 'put',
-//   headers: {'Content-Type': 'application/json'},
-//   body: JSON.stringify({
-//     'profit': parseInt(placedBet),
-//     'wins': parseInt(wins),
-//     'losses': parseInt(losses)
-//   })
-// })
-// .then(response => {
-//   if (response.ok) return response.json();
-// })
-// .then(data => {
-//   console.log(data)
-// });
-// }
