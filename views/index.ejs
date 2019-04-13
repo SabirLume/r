@@ -7,36 +7,69 @@
   </head>
   <body>
   <h1>Roulette</h1>
-  <section class="container">
-    <div class="board green"> <p>1</p> </div>
-    <div class="board black"> <p>2</p> </div>
-    <div class="board green"> <p>3</p> </div>
-    <div class="board black"> <p>4</p> </div>
-    <div class="board green"> <p>5</p> </div>
-    <div class="board black"> <p>6</p> </div>
-    <div class="board mid"> <p>0</p> </div>
-    <div class="board green"> <p>7</p> </div>
-    <div class="board black"> <p>8</p> </div>
-    <div class="board green"> <p>9</p> </div>
-    <div class="board black"> <p>10</p> </div>
-    <div class="board green"> <p>11</p> </div>
-    <div class="board black"> <p>12</p> </div>
+  <section class="gameBoard">
+    <div class="board green">00</div>
+    <div class="board green">0</div>
+    <div class="board black">3</div>
+    <div class="board red">6</div>
+    <div class="board black">9</div>
+    <div class="board red">12</div>
+    <div class="board red">15</div>
+    <div class="board black">18</div>
+    <div class="board black">21</div>
+    <div class="board red">24</div>
+    <div class="board black">27</div>
+    <div class="board black">30</div>
+    <div class="board red">33</div>
+    <div class="board black">36</div>
+    <div class="board red">2</div>
+    <div class="board black">5</div>
+    <div class="board red">8</div>
+    <div class="board red">11</div>
+    <div class="board red">14</div>
+    <div class="board red">17</div>
+    <div class="board red">20</div>
+    <div class="board black">23</div>
+    <div class="board red">26</div>
+    <div class="board red">29</div>
+    <div class="board black">32</div>
+    <div class="board red">35</div>
+    <div class="board black">1</div>
+    <div class="board red">4</div>
+    <div class="board black">7</div>
+    <div class="board red">10</div>
+    <div class="board red">13</div>
+    <div class="board black">16</div>
+    <div class="board black">19</div>
+    <div class="board red">22</div>
+    <div class="board black">25</div>
+    <div class="board red">28</div>
+    <div class="board red">31</div>
+    <div class="board black">34</div>
+    <div class="board lowHalf">1st 12</div>
+    <div class="board midHalf">2nd 12</div>
+    <div class="board hiHalf">3rd 12</div>
+    <div class="board low bet">1 to 18</div>
+    <div class="board even bet">EVEN</div>
+    <div class="board red bet">RED</div>
+    <div class="board black bet">BLACK</div>
+    <div class="board odd bet">ODD</div>
+    <div class="board high bet">19 to 36</div>
   </section>
 
   <section class="inputSection">
     <section class="contain bank">
       <h2>Bank</h2>
-      <p>$<span class="userBank">1,000</span></p>
+      <p>$<span class="userBank">10,000</span></p>
     </section>
     <section class="contain inputs">
-      <h2>Bets</h2>
-      <input id="placedBet" type="text" name="" value="" placeholder="Place your bet here">
+      <h2>Amount bet</h2>
+      <p>$<input type="text" name="betInput" value="" placedholder="Place your bet!">
+      <h2>Bet Chosen</h2>
+      <section class="chosenBet">
 
-      <select class="colors" name="">
-        <option value="Green">Green</option>
-        <option value="Black">Black</option>
-        <option value="Red">Red</option>
-      </select>
+        <p class="multiplier"></p>
+      </section>
       <button id="betClick" type="button" name="button">Place Bet</button>
 
     </section>
@@ -51,11 +84,3 @@
   </script>
   </body>
 </html>
-
-
-<!-- // drop down for colors
-// input for user number input
-// button for dropdown
-// button to start game
-// bank
-// display if user won or lost -->
