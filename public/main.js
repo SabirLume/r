@@ -1,4 +1,3 @@
-
 //set variable to change when clicking a board section
 let placedBet;
 const arrayOfBoard = document.getElementsByTagName('div');
