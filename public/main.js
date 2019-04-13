@@ -1,32 +1,81 @@
 //set variable to change when clicking a board section
-let placedBet;
-const arrayOfBoard = document.getElementsByTagName('div');
+document.addEventListener("DOMContentLoaded", () => {
 
-Array.from(document.querySelectorAll(".board")).forEach(function(element) {
-  element.addEventListener('click', function(){
-    //changed placedbet variable to be equal to the inside of the section that was clicked
-    placedBet = this.innerText
-    // console.log(`This is the players bet.. should show in screen below playing table ${placedBet}`);
-    document.querySelector('.chosenBet').innerText = placedBet
-  })
+  let placedBet;
+  let actualBet;
+  let winnings;
+  let wins=0;
+  let losses=0;
+  let el;
+  let profit=0;
+
+  const userBankElement = document.getElementById('userBank');
+  const arrayOfBoard = document.getElementsByTagName('div');
+  const betClick = document.querySelector('#betClick');
+  const redBlack =  ["black", "red"];
+
+  //changed placedbet variable to be equal to the inside of the section that was clicked
+
+  Array.from(document.querySelectorAll(".board")).forEach((element) => {
+    element.addEventListener('click', () => {
+      placedBet = element.innerText;
+      el = element;
+      document.querySelector('.chosenBet').innerText = placedBet;
+      console.log(`This is the players bet.. should show in screen below playing table ${placedBet}`);
+    });
+  });
+
+  betClick.addEventListener('click', () => {
+    const betInput = document.querySelector('#betInput').value;
+    actualBet = parseFloat(betInput);
+    gameLogic(actualBet);
+    console.log(`This is the users actual. should show in screen below playing table ${actualBet}`);
+  });
+
+  const gameLogic = (x) => {
+    num = Math.floor(Math.random() * 38);
+    let random = redBlack[Math.floor(Math.random()* redBlack.length)];
+    console.log(random)
+    if (num % 2 === 0 && placedBet.toLowerCase() === "even") {
+      winEvenOdd(x);
+    } else if (num % 2 !== 0 && placedBet.toLowerCase() === "odd") {
+      winEvenOdd(x);
+    } else if (random === 'red' && el.id === 'red') {
+      winEvenOdd(x);
+    } else if (random === 'black' && el.id === 'black') {
+      winEvenOdd(x);
+    } else {
+      loss(actualBet);
+    }
+
+  const winEvenOdd = (z) => {
+    let userBank = document.getElementById('userBank').innerHTML;
+    winnings = (z * 2);
+    let money = parseInt(userBank) + winnings;
+    userBankElement.innerHTML = money;
+    document.getElementById('result').innerHTML = `You won! you chose ${placedBet} and the computer chose ${num}`;
+    wins += 1;
+    profit -= winnings;
+  }
+
+  const loss = (z) => {
+    let userBank = document.getElementById('userBank').innerHTML;
+    userBankElement.innerHTML = parseInt(userBank) + z;
+    document.getElementById('result').innerHTML = `you lost! you chose ${placedBet} and the computer chose ${num}` ;
+    losses += 1;
+    profit += winnings;
+  }
+
+}
 })
-
-
-
-//Code for random number generator (core part of game) & win comparisan
-//have to figure out how to have all the numbers inside of numGen to be available to other functions for comparing and such
-  //random number between 0 and 1 generated and multiplied by 38. we need 38 numbers so that if it goes 37 or higher, we get 37 and we can use 37 to get 00. This number generator will return numbers 0-37, with 37 turning the number
+// const redBlack = (class) => {
+//   console.log(class);
+// }
 
 // function numGen() {
-//   let num = Math.floor(Math.random()*38);
-//   let oddEven = "";
 //   let twelve = "";
 //   let half="";
-//
-//   num === 37 ? num = "00" : console.log("not 00");
-//   // if(num===37){
-//   //   num="00"
-//   // }
+
 // //can turn this into its own function
 // //decides if generated number is odd or even
 //   if (num==="00") {
@@ -64,19 +113,4 @@ Array.from(document.querySelectorAll(".board")).forEach(function(element) {
 //   }
 // }
 
-// fetch('result', {
-//   method: 'put',
-//   headers: {'Content-Type': 'application/json'},
-//   body: JSON.stringify({
-//     'profit': parseInt(placedBet),
-//     'wins': parseInt(wins),
-//     'losses': parseInt(losses)
-//   })
-// })
-// .then(response => {
-//   if (response.ok) return response.json();
-// })
-// .then(data => {
-//   console.log(data)
-// });
-// }
+//
