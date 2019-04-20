@@ -6,88 +6,56 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <section class="mainWrapper">
   <h1>Roulette</h1>
-  <section class ="num_00">
-      <div class="board green">00</div>
-      <div class="board green">0</div>
-    </section>
-
-  <section class="gameBoard">
-    <div class="board black"><span class="boardblack">03</span></div>
-    <div class="board red"><span class="boardred">06</span></div>
-    <div class="board black"><span class = "boardblack">09</span></div>
-    <div class="board red"><span class="boardblack">12</span></div>
-    <div class="board red"><span class ="boardblack">15</span></div>
-    <div class="board black"><span class="boardblack">18</span></div>
-    <div class="board black"><span class="boardblack">21</span></div>
-    <div class="board red"><span class="boardred">24</span></div>
-    <div class="board black"><span class= "boardblack">27</span></div>
-    <div class="board black"><span class= "boardblack">30</span></div>
-    <div class="board red"><span class="boardred">33</span></div>
-    <div class="board black"><span class= "boardblack">36</span></div>
-    <div class="board red"><span class= "boardred">02</span></div>
-    <div class="board black"><span class= "boardblack">05</span></div>
-    <div class="board red"><span class="boardred">08</span></div>
-    <div class="board red"><span class="boardred">11</span></div>
-    <div class="board red"><span class="boardblack">14</span></div>
-    <div class="board red"><span class="boardred">17</span></div>
-    <div class="board red"><span class="boardred">20</span></div>
-    <div class="board black"><span class= "boardblack">23</span></div>
-    <div class="board red"><span class="boardred">26</span></div>
-    <div class="board red"><span class="boardred">29</span></div>
-    <div class="board black"><span class= "boardblack">32</span></div>
-    <div class="board red"><span class="boardred">35</span></div>
-    <div class="board black"><span class ="boardblack">01</span></div>
-    <div class="board red"><span class="boardred" >04</span></div>
-    <div class="board black"><span class ="boardblack">07</span></div>
-    <div class="board red"><span class="boardred">10</span></div>
-    <div class="board red"><span class="boardred">13</span></div>
-    <div class="board black"><span class="boardblack">16</span></div>
-    <div class="board black"><span class="boardblack">19</span></div>
-    <div class="board red"><span class="boardred">22</span></div>
-    <div class="board black"><span class= "boardblack">25</span></div>
-    <div class="board red"><span class="boardred">28</span></div>
-    <div class="board red"><span class="boardred">31</span></div>
-    <div class="board black"><span class= "boardblack">34</span></div>
-
-    <section class="placeBeat">
-    <div class="board midHalf">1nd 12</div>
-    <div class="board hiHalf">2nd 12</div>
-    <div class="board low bet">3rd 12</div>
-    <div class="board even bet">RED </div>
-    <div class="board red bet">EVEN</div>
-    <div class="board black bet">BLACK</div>
-    <div class="board odd bet">1 to 18</div>
-    <div class="board high bet">ODD</div>
-    <div class="board midHalf">19 to 36 </div>
-  </section>
-
+  <section class="container">
+    <div class="board green"> <p>1</p> </div>
+    <div class="board black"> <p>2</p> </div>
+    <div class="board green"> <p>3</p> </div>
+    <div class="board black"> <p>4</p> </div>
+    <div class="board green"> <p>5</p> </div>
+    <div class="board black"> <p>6</p> </div>
+    <div class="board mid"> <p>0</p> </div>
+    <div class="board green"> <p>7</p> </div>
+    <div class="board black"> <p>8</p> </div>
+    <div class="board green"> <p>9</p> </div>
+    <div class="board black"> <p>10</p> </div>
+    <div class="board green"> <p>11</p> </div>
+    <div class="board black"> <p>12</p> </div>
   </section>
 
   <section class="inputSection">
     <section class="contain bank">
       <h2>Bank</h2>
-      <p>$<span id="userBank">10000</span></p>
+      <p>$<span class="userBank">1,000</span></p>
     </section>
     <section class="contain inputs">
-      <h2>Amount bet</h2>
-      <p>$<input type="text" id="betInput" value="" placedholder="Place your bet!">
-      <h2>Bet Chosen</h2>
-      <section class="chosenBet">
+      <h2>Bets</h2>
+      <input id="placedBet" type="text" name="" value="" placeholder="Place your bet here">
 
-        <p class="multiplier"></p>
-      </section>
-
+      <select class="colors" name="">
+        <option value="Green">Green</option>
+        <option value="Black">Black</option>
+        <option value="Red">Red</option>
+      </select>
       <button id="betClick" type="button" name="button">Place Bet</button>
 
     </section>
     <section class="contain displayResult">
       <h2>Result</h2>
-        <p id="result"></p>
+        <p class="result"></p>
     </section>
   </section>
-</section>
-  <script src="main.js" type="text/javascript"></script>
+
+  <script src="main.js" type="text/javascript">
+
+  </script>
   </body>
 </html>
+
+
+<!-- // drop down for colors
+// input for user number input
+// button for dropdown
+// button to start game
+// bank
+// display if user won or lost -->
