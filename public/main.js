@@ -6,7 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
    let reward;
    let el;
    const userBankElement = document.getElementById('userBank');
-
+  
+  Array.from(document.querySelectorAll(".board")).forEach((element) => {
+    element.addEventListener('click', () => {
+      placedBet = element.innerText;
+      el = element;
+      document.querySelector('.chosenBet').innerText = placedBet;
+      console.log(`This is the players bet.. should show in screen below playing table ${placedBet}`);
+    });
+  });
 
    Array.from(document.querySelectorAll(".board")).forEach((element) => {
       element.addEventListener('click', () => {
