@@ -1,73 +1,86 @@
-//declare variable for placedBet, used in function to grab user's bet
-//declare variable for win to use in other functions
-//declare variable for wins counter
-//declare variable for loss counter
-let placedBet=0
-let win;
-let wins=0;
-let losses=0;
-let resMsg = document.querySelector('.result');
-let userBank = document.querySelector('.userBank');
-let color= document.querySelector('.colors');
+document.addEventListener("DOMContentLoaded", () => {
 
-document.getElementById('betClick').addEventListener('click', function() {
-  // takes an amount as bet
-  placedBet = document.querySelector('#placedBet').value;
-  if(placedBet > 6666){
-    alert('Your bet must be lower than $6,666')
-  }
-  randNum()
-})
+//Had to set some global variables to get things to run
+   let betChoice; //used in forEach loop run on board pieces and in gameLogic function to compare result to bet
+   let betAmount; //Used to select how much the user's betting. Used in input button
+   let reward;
+   let el;
+   const userBankElement = document.getElementById('userBank');
+  
+  Array.from(document.querySelectorAll(".board")).forEach((element) => {
+    element.addEventListener('click', () => {
+      placedBet = element.innerText;
+      el = element;
+      document.querySelector('.chosenBet').innerText = placedBet;
+      console.log(`This is the players bet.. should show in screen below playing table ${placedBet}`);
+    });
+  });
 
-//Code for random number generator (core part of game) & win comparisan
-function randNum (){
-  let num = Math.floor(Math.random()*13)
-
-//formula to compare users guess to game result
-  compare(num)
-  // win/loss message generated
-  if(win===true){
-    //if user wins, bet is multiplied to give reward
-    placedBet *= 5
-    //wins counter increased
-    wins+=1;
-    resMsg.innerText="Congratulations, you win! But dont't get used to it, loser";
-    //user bank changed
-    userBank.innerText= parseInt(userBank.innerText) + placedBet
-  }else if(win===false){
-    //loss counter increased
-    placedBet=document.querySelector('#placedBet').value
-    losses+=1
-    resMsg.innerText="Ha! You lose. Yo money's miiiine";
-    //user bank changed
-    userBank.innerText= parseInt(userBank.innerText) - placedBet
-  }
-  fetch('result', {
-      method: 'put',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        'profit': parseInt(placedBet),
-        'wins': parseInt(wins),
-        'losses': parseInt(losses)
-      })
-    })
-    .then(response => {
-     if (response.ok) return response.json();
-   })
-   .then(data => {
-     console.log(data)
+   Array.from(document.querySelectorAll(".board")).forEach((element) => {
+      element.addEventListener('click', () => {
+         betChoice = element.innerText;
+         el = element;
+         document.querySelector('.chosenBet').innerText = betChoice;
+         console.log(`This is the players bet.. should show in screen below playing table ${betChoice}`);
+      });
    });
- }
 
-function compare(num){
-// takes input of color from a drop down as the bet and compares to generated number
-  if((num===0)&&(color.value==="Red")){
-    win = true
-  }else if((num%2===0)&&(color.value==="Black")){
-    win = true
-  }else if((num%2!==0)&&(color.value==="Green")){
-    win = true
-  }else{
-    win = false
-  }
-}
+   document.querySelector('#betClick').addEventListener('click', () => {
+      const betInput = document.querySelector('#betInput').value;
+      betAmount = parseFloat(betInput);
+      console.log(`This is the users actual. should show in screen below playing table ${betAmount}`);
+      gameLogic(betAmount);
+   });
+
+   const gameLogic = (x) => {
+      num = Math.floor(Math.random() * 38);
+      const redBlack =  ["black", "red"];
+      let random = redBlack[Math.floor(Math.random()* redBlack.length)];
+      if (betChoice === undefined) {
+         alert("please make a bet")
+      } else {
+         if (num % 2 === 0 && betChoice.toLowerCase() === "even") {
+            winEvenOddOrBlackRed (x);
+            document.getElementById('result').innerHTML = `You won! you chose ${betChoice} and the computer chose ${num}`;
+         } else if (num % 2 !== 0 && betChoice.toLowerCase() === "odd") {
+            winEvenOddOrBlackRed (x);
+            document.getElementById('result').innerHTML = `You won! you chose ${betChoice} and the computer chose ${num}`;
+         } else if (betChoice.toLowerCase()  === "red" && random === "red") {
+            winEvenOddOrBlackRed (x);
+            document.getElementById('result').innerHTML = `You won! you chose ${betChoice} and the computer chose ${random}`;
+         } else if (betChoice.toLowerCase()  === "black" && random === "black") {
+            winEvenOddOrBlackRed (x);
+            document.getElementById('result').innerHTML = `You won! you chose ${betChoice} and the computer chose ${random}`;
+         } else if (betChoice === "1 to 18" && num > 1 && betChoice === "1 to 18" && num < 18) {
+            winOneEighteen_EighteenThirtySix(x);
+            document.getElementById('result').innerHTML = `You won! you chose ${betChoice} and the computer chose ${num}`;
+         } else if (betChoice === "19 to 36" && num > 19 && betChoice === "19 to 36" && num < 36) {
+            winOneEighteen_EighteenThirtySix(x);
+            document.getElementById('result').innerHTML = `You won! you chose ${betChoice} and the computer chose ${num}`;
+         } else {
+            loss(betAmount);
+         }
+      }
+   }
+
+   const winEvenOddOrBlackRed = (z) => {
+      let userBank = document.getElementById('userBank').innerHTML;
+      reward = (z * 2);
+      let money = parseInt(userBank) + reward;
+      userBankElement.innerHTML = money;
+   }
+
+   const winOneEighteen_EighteenThirtySix = (z) => {
+      let userBank = document.getElementById('userBank').innerHTML;
+      reward = (z * 3); // making 3x what u put fown
+      let money = parseInt(userBank) + reward;
+      userBankElement.innerHTML = money;
+   }
+
+   const loss = (z) => {
+      let userBank = document.getElementById('userBank').innerHTML;
+      userBankElement.innerHTML = parseInt(userBank) - (z);
+      document.getElementById('result').innerHTML = `you lost!` ;
+   }
+
+});

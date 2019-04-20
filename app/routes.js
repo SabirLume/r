@@ -26,13 +26,14 @@ module.exports = function(app, passport, db) {
 
 // message board routes ===============================================================
     app.put('/result', (req, res) => {
+      console.log(req.body)
       db.collection('bank')
       .findOneAndUpdate({}, {
         //if we're able to make the profit field value an integer, use inc. If not, use set.
         $inc: {
-          profit: req.body.profit,
-          wins: req.body.wins,
-          losses: req.body.losses
+          profit: parseInt(req.body.profit),
+          wins: parseInt(req.body.wins),
+          losses: parseInt(req.body.losses)
         }
       }, {
         sort: {_id: -1},
